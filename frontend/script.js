@@ -2,7 +2,7 @@
 async function carregarProdutos() {
   try {
     const termoBusca = document.getElementById("campoBusca")?.value || "";
-    const resposta = await fetch(`http://localhost:3000/api/produtos?busca=${encodeURIComponent(termoBusca)}`);
+    const resposta = await fetch(`https://guarani-backend-1.onrender.com/api/produtos?busca=${encodeURIComponent(termoBusca)}`);
     const produtos = await resposta.json();
 
     const container = document.getElementById("produtos");
