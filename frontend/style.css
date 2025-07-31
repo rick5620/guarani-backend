@@ -1,0 +1,360 @@
+/* RESET BÁSICO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* CABEÇALHO */
+.cabecalho {
+  background-color: #ff7a00;
+  color: #fff;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.logo {
+  max-height: 60px;
+  height: auto;
+  object-fit: contain;
+}
+
+.titulo-site {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* CAMPO DE BUSCA */
+.search-container {
+  display: grid;
+  place-items: center;
+  margin: 20px auto;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+}
+
+.search-container input[type="text"] {
+  padding: 12px 40px 12px 15px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.search-container .botao-busca {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.search-container .lupa-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.search-container button img {
+  width: 20px;
+  height: 20px;
+}
+
+/* AUTOCOMPLETE */
+.autocomplete-itens {
+  list-style: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  border-radius: 0 0 10px 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.item-autocomplete {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.item-autocomplete:hover {
+  background-color: #f0f0f0;
+}
+
+/* TÍTULOS */
+.subtitulo,
+main h2 {
+  text-align: center;
+  margin: 30px 0 20px;
+  color: #ff7a00;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+/* BLOCOS DE CATEGORIA */
+.categoria-bloco {
+  margin-bottom: 40px;
+  padding: 0 1rem;
+}
+
+.categoria-titulo {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #ff7a00;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+/* GRID DE PRODUTOS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* CARD DE PRODUTO */
+.grid div {
+  background: #fff5eb;
+  border: 2px solid #ff7a00;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  position: relative;
+}
+
+.grid div:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
+}
+
+/* SELO LANÇAMENTO */
+.grid .tag-lancamento {
+  background-color: #ff7a00;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* IMAGEM DO PRODUTO */
+.grid img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* INFORMAÇÕES DO PRODUTO */
+.grid h3 {
+  margin: 12px 0 6px;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+/* BOTÃO DE DETALHES */
+.grid a {
+  display: inline-block;
+  background-color: #ff7a00;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.grid a:hover {
+  background-color: #e06900;
+}
+
+/* GALERIA ROTATIVA */
+.carousel {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.carousel img {
+  width: 100%;
+  object-fit: contain;
+  display: none;
+  animation: fade 1s ease-in-out;
+  height: 100%;
+}
+
+.carousel img.active {
+  display: block;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* RODAPÉ */
+footer {
+  text-align: center;
+  padding: 30px 20px 20px;
+  background-color: #ff7a00;
+  color: #fff;
+  font-size: 0.95rem;
+  margin-top: 40px;
+}
+
+footer .info-contato {
+  margin-bottom: 15px;
+}
+
+footer .info-contato p {
+  margin: 5px 0;
+}
+
+footer .redes-sociais a {
+  margin: 0 10px;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer .redes-sociais a:hover {
+  color: #ddd;
+}
+
+/* BOTÃO WHATSAPP FLUTUANTE */
+.whatsapp-float {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background-color: #25D366;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  background-color: #1ebe5b;
+}
+
+.whatsapp-float i {
+  font-size: 1.4em;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .logo-container {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .logo {
+    max-height: 55px;
+  }
+
+  .grid {
+    padding: 0 10px 30px;
+    gap: 1rem;
+  }
+
+  .grid div {
+    padding: 12px;
+  }
+
+  .titulo-site {
+    font-size: 1.6rem;
+  }
+
+  main h2,
+  .subtitulo {
+    font-size: 1.4rem;
+  }
+
+  .search-container input {
+    width: 90%;
+  }
+
+  .search-container .botao-busca,
+  .search-container .lupa-icon {
+    font-size: 16px;
+  }
+
+  footer {
+    font-size: 0.9rem;
+  }
+
+  .categoria-titulo {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+    padding: 0 10px;
+  }
+
+  .search-container input[type="text"] {
+    font-size: 14px;
+    padding: 10px 35px 10px 12px;
+  }
+
+  .grid h3 {
+    font-size: 1rem;
+  }
+
+  .grid a {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+}

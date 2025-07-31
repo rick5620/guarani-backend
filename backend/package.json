@@ -1,0 +1,26 @@
+{
+  "name": "guarani-moveis",
+  "version": "1.0.0",
+  "description": "Catálogo online da Guarani Móveis",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "open": "start http://localhost:3000 && node backend/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "body-parser": "2.2.0",
+    "sqlite3": "^5.1.7"
+    
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

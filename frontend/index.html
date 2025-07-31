@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guarani Móveis - Catálogo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="imagens/logo.png" />
+  <style>
+    .categorias-menu {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 15px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .categoria-dropdown {
+      position: relative;
+    }
+
+    .categoria-dropdown > a {
+      background-color: #fff;
+      color: #ff7a00;
+      padding: 8px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid #ff7a00;
+      transition: background-color 0.3s;
+      display: inline-block;
+    }
+
+    .categoria-dropdown > a:hover {
+      background-color: #ff7a00;
+      color: #fff;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background-color: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+      border-radius: 10px;
+      min-width: 160px;
+    }
+
+    .submenu a {
+      display: block;
+      padding: 10px 15px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .submenu a:hover {
+      background-color: #ff7a00;
+      color: white;
+    }
+
+    .categoria-dropdown:hover .submenu {
+      display: block;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #fff;
+      margin: 4px 0;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .categorias-menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background: #ff7a00;
+        padding: 10px;
+      }
+
+      .categorias-menu.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="logo-container">
+      <img src="imagens/logo.png" alt="Guarani Móveis" class="logo" />
+      <h1 class="titulo-site">Guarani Móveis</h1>
+    </div>
+
+    <!-- Botão hambúrguer -->
+    <div class="hamburger" onclick="document.getElementById('menuCategorias').classList.toggle('active')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Menu de Categorias Dropdown -->
+    <nav class="categorias-menu" id="menuCategorias">
+      <div class="categoria-dropdown">
+        <a href="pesquisa.html?categoria=Armários">Armários</a>
+      </div>
+      <div class="categoria-dropdown">
+        <a href="#">Cadeiras</a>
+        <div class="submenu">
+          <a href="pesquisa.html?categoria=cadeiras-de-escritorio">Cadeiras de Escritório</a>
+          <a href="pesquisa.html?categoria=banquetas">Banquetas</a>
+        </div>
+      </div>
+      <div class="categoria-dropdown">
+        <a href="pesquisa.html?categoria=Mesas">Mesas</a>
+      </div>
+      <div class="categoria-dropdown">
+        <a href="pesquisa.html?categoria=Gaveteiros">Gaveteiros</a>
+      </div>
+    </nav>
+
+    <!-- Barra de busca -->
+    <div class="search-container">
+      <input type="text" id="campoBusca" placeholder="Buscar móveis..." autocomplete="off" />
+      <button class="botao-busca"><i class="fas fa-search"></i></button>
+      <div id="autocomplete-list" class="autocomplete-items"></div>
+    </div>
+  </header>
+
+  <!-- Banners -->
+  <div class="carousel">
+    <img src="imagens/banner1.jpg" class="active" alt="Banner 1" />
+    <img src="imagens/banner2.jpg" alt="Banner 2" />
+    <img src="imagens/banner3.jpg" alt="Banner 3" />
+  </div>
+
+  <main>
+    <h2 class="subtitulo">Nosso Catálogo</h2>
+    <div id="produtosPorCategoria"></div>
+  </main>
+
+  <footer>
+    <div class="info-contato">
+      <p><strong>Telefone:</strong> <i class="fas fa-phone"></i> (37) 3242-1418</p>
+      <p><strong>WhatsApp:</strong> <i class="fab fa-whatsapp"></i> (37) 99999-3597</p>
+      <p><strong>Email:</strong> <i class="fas fa-envelope"></i> atendimento.guaranimoveis@gmail.com</p>
+      <p><strong>Horário:</strong><br><i class="fas fa-clock"></i> Seg a Sex: 08h às 18h<br><i class="fas fa-clock"></i> Sáb: 08h às 12h</p>
+    </div>
+
+    <div class="redes-sociais">
+      <p><strong>Siga nossas redes sociais:</strong></p>
+      <a href="https://www.facebook.com/guaranimoveisitauna" target="_blank"><i class="fab fa-facebook"></i> Facebook\Guarani Móveis</a><br>
+      <a href="https://www.instagram.com/guaranimoveis_?igsh=MXAyOTVleHY5ZHN2bw==" target="_blank"><i class="fab fa-instagram"></i> Instagram\guaranimoveis_</a><br>
+      <a href="https://wa.me/5537999993597" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+    <div class="quem-somos">
+      <p><strong>Quem Somos:</strong> A Guarani Móveis é uma loja especializada em móveis e decoração de interiores, com tradição e excelência no mercado regional.</p>
+    </div>
+
+    <div class="endereco">
+      <p><strong>Endereço:</strong> <i class="fas fa-map-marker-alt"></i> Rua Marechal Deodoro, 372 - Centro, Itaúna - MG, 35680-066</p>
+    </div>
+
+    <p>&copy; 2025 Guarani Móveis - Todos os direitos reservados</p>
+  </footer>
+
+  <a href="https://wa.me/5537999993597" class="whatsapp-float" target="_blank" title="Fale conosco"><i class="fab fa-whatsapp"></i></a>
+
+  <script>
+    // Carrossel
+    const slides = document.querySelectorAll('.carousel img');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 4000);
+
+    // Carregamento de produtos
+    async function carregarProdutos() {
+      try {
+        const resposta = await fetch("http://localhost:3000/api/produtos");
+        const produtos = await resposta.json();
+
+        const categorias = {};
+        produtos.forEach(produto => {
+          const categoria = produto.categoria?.trim() || "Outros";
+          if (!categorias[categoria]) categorias[categoria] = [];
+          categorias[categoria].push(produto);
+        });
+
+        const ordemDesejada = ["Cadeiras", "Mesas", "Armários, Gaveteiros"];
+        const container = document.getElementById("produtosPorCategoria");
+        container.innerHTML = "";
+
+        ordemDesejada.forEach(categoria => {
+          const lista = categorias[categoria];
+          if (lista && lista.length > 0) {
+            const grupoHTML = `
+              <section class="categoria-bloco">
+                <h3 class="categoria-titulo">${categoria}</h3>
+                <div class="grid">
+                  ${lista.map(produto => `
+                    <div class="produto">
+                      <img src="${produto.imagem}" alt="${produto.nome}">
+                      <h3>${produto.nome}</h3>
+                      <a href="detalhes.html?id=${produto.id}" class="botao-detalhes">Saiba mais</a>
+                    </div>
+                  `).join("")}
+                </div>
+              </section>
+            `;
+            container.innerHTML += grupoHTML;
+          }
+        });
+
+        popularAutocomplete(produtos.map(p => p.nome));
+      } catch (erro) {
+        console.error("Erro ao carregar produtos:", erro);
+      }
+    }
+
+    carregarProdutos();
+
+    // Autocomplete busca
+    const campoBusca = document.getElementById("campoBusca");
+    const lista = document.getElementById("autocomplete-list");
+
+    function popularAutocomplete(produtos) {
+      campoBusca.addEventListener("input", () => {
+        const termo = campoBusca.value.toLowerCase();
+        lista.innerHTML = "";
+        if (!termo) return;
+
+        const sugestões = produtos.filter(p => p.toLowerCase().includes(termo)).slice(0, 5);
+        sugestões.forEach(sugestao => {
+          const item = document.createElement("div");
+          item.classList.add("item-autocomplete");
+          item.textContent = sugestao;
+          item.onclick = () => {
+            campoBusca.value = sugestao;
+            lista.innerHTML = "";
+            aplicarFiltro(sugestao);
+          };
+          lista.appendChild(item);
+        });
+      });
+    }
+
+    document.querySelector('.botao-busca').addEventListener('click', () => {
+      const termo = campoBusca.value;
+      if (termo.trim()) {
+        salvarHistorico(termo);
+        aplicarFiltro(termo);
+      }
+    });
+
+    function aplicarFiltro(termo) {
+      if (termo.trim()) {
+        window.location.href = `pesquisa.html?q=${encodeURIComponent(termo.trim())}`;
+      }
+    }
+
+    function salvarHistorico(termo) {
+      let historico = JSON.parse(localStorage.getItem("historicoBusca") || "[]");
+      if (!historico.includes(termo)) {
+        historico.unshift(termo);
+        if (historico.length > 10) historico.pop();
+        localStorage.setItem("historicoBusca", JSON.stringify(historico));
+      }
+    }
+
+    // Dropdown interatividade (apenas para Cadeiras)
+    document.querySelectorAll('.categoria-dropdown').forEach(dropdown => {
+      const submenu = dropdown.querySelector('.submenu');
+      if (submenu) {
+        const link = dropdown.querySelector('a');
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          dropdown.classList.toggle('open');
+        });
+      }
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.categoria-dropdown')) {
+        document.querySelectorAll('.categoria-dropdown').forEach(d => d.classList.remove('open'));
+      }
+    });
+  </script>
+</body>
+</html>

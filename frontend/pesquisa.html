@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guarani Móveis - Resultados da Busca</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="logo-container">
+      <img src="imagens/logo.png" alt="Guarani Móveis" class="logo" />
+      <h1 class="titulo-site">Guarani Móveis</h1>
+    </div>
+
+    <!-- Barra de busca com histórico/autocomplete -->
+    <div class="search-container">
+      <input type="text" id="campoBusca" placeholder="Buscar móveis..." autocomplete="off" />
+      <button class="botao-busca"><i class="fas fa-search"></i></button>
+      <div id="autocomplete-list" class="autocomplete-items"></div>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="subtitulo">Resultados da Busca</h2>
+    <div id="resultadoBusca" class="grid"></div>
+    <p id="mensagemNaoEncontrado" class="mensagem-nao-encontrado" style="display: none;">
+      Nenhum produto encontrado para sua busca.
+    </p>
+  </main>
+
+  <footer>
+    <p><strong>Endereço:</strong> Rua Marechal Deodoro, 372 - Centro, Itaúna/MG</p>
+    <p><strong>Telefone:</strong> (37) 3242-1418 | <strong>WhatsApp:</strong> (37) 99999-3597</p>
+    <p><strong>Email:</strong> atendimento.guaranimoveis@gmail.com</p>
+    <p>&copy; 2025 Guarani Móveis - Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    const campoBusca = document.getElementById("campoBusca");
+    const lista = document.getElementById("autocomplete-list");
+
+    async function carregarProdutos() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const termo = urlParams.get("q")?.toLowerCase() || "";
+
+      campoBusca.value = decodeURIComponent(termo);
+
+      try {
+        const resposta = await fetch(`http://localhost:3000/api/produtos?q=${encodeURIComponent(termo)}`);
+        const produtos = await resposta.json();
+
+        const container = document.getElementById("resultadoBusca");
+        const mensagem = document.getElementById("mensagemNaoEncontrado");
+
+        container.innerHTML = "";
+
+        if (produtos.length === 0) {
+          mensagem.style.display = "block";
+        } else {
+          mensagem.style.display = "none";
+          produtos.forEach(produto => {
+            const div = document.createElement("div");
+            div.classList.add("produto");
+            div.innerHTML = `
+              <img src="${produto.imagem}" alt="${produto.nome}" />
+              <h3>${produto.nome}</h3>
+              <a href="detalhes.html?id=${produto.id}" class="botao-detalhes">Saiba mais</a>
+            `;
+            container.appendChild(div);
+          });
+        }
+
+        popularAutocomplete(produtos.map(p => p.nome));
+      } catch (erro) {
+        console.error("Erro ao carregar produtos:", erro);
+      }
+    }
+
+    function popularAutocomplete(produtos) {
+      campoBusca.addEventListener("input", () => {
+        const termo = campoBusca.value.toLowerCase();
+        lista.innerHTML = "";
+
+        if (!termo) return;
+
+        const sugestões = produtos.filter(p => p.toLowerCase().includes(termo)).slice(0, 5);
+        sugestões.forEach(sugestao => {
+          const item = document.createElement("div");
+          item.classList.add("item-autocomplete");
+          item.textContent = sugestao;
+          item.onclick = () => {
+            campoBusca.value = sugestao;
+            lista.innerHTML = "";
+            aplicarFiltro(sugestao);
+          };
+          lista.appendChild(item);
+        });
+      });
+    }
+
+    document.querySelector('.botao-busca').addEventListener('click', () => {
+      const termo = campoBusca.value.trim();
+      if (termo) {
+        salvarHistorico(termo);
+        aplicarFiltro(termo);
+      }
+    });
+
+    function aplicarFiltro(termo) {
+      window.location.href = `pesquisa.html?q=${encodeURIComponent(termo.trim())}`;
+    }
+
+    function salvarHistorico(termo) {
+      let historico = JSON.parse(localStorage.getItem("historicoBusca") || "[]");
+      if (!historico.includes(termo)) {
+        historico.unshift(termo);
+        if (historico.length > 10) historico.pop();
+        localStorage.setItem("historicoBusca", JSON.stringify(historico));
+      }
+    }
+
+    carregarProdutos();
+  </script>
+</body>
+</html>

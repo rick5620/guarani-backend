@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalhes do Produto - Guarani Móveis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <header>
+    <h1>Guarani Móveis</h1>
+    <div class="busca-container">
+      <input
+        type="text"
+        id="barraBusca"
+        placeholder="Buscar móveis..."
+        oninput="sugerirTermos(this.value)"
+        onkeydown="if(event.key === 'Enter') aplicarFiltro(this.value)"
+      />
+      <button onclick="aplicarFiltro(document.getElementById('barraBusca').value)">
+        <i class="fas fa-search"></i>
+      </button>
+      <ul id="sugestoes"></ul>
+    </div>
+  </header>
+
+  <main class="detalhes-container">
+    <div class="detalhes-produto" id="detalhesProduto">
+      <!-- Conteúdo será carregado via JavaScript -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-conteudo">
+      <p><i class="fas fa-map-marker-alt"></i> Endereço: Av. Principal, 123 - Centro, Divinópolis - MG</p>
+      <p><i class="fas fa-phone"></i> Telefone: (37) 9999-9999</p>
+      <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/5537999993597" target="_blank">(37) 99999-3597</a></p>
+      <p><i class="fas fa-envelope"></i> E-mail: contato@guaranimoveis.com.br</p>
+      <p><i class="far fa-clock"></i> Horário de atendimento: Seg a Sex - 08h às 18h</p>
+      <p style="margin-top: 10px;">&copy; 2025 Guarani Móveis - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script>
+    // Carregar detalhes do produto via query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+
+    if (id) {
+      fetch(`http://localhost:3000/produtos/${id}`)
+        .then((res) => res.json())
+        .then((produto) => {
+          const container = document.getElementById("detalhesProduto");
+          container.innerHTML = `
+            <img src="http://localhost:3000/uploads/${produto.imagem}" alt="${produto.nome}" />
+            <h2>${produto.nome}</h2>
+            <p>${produto.descricao}</p>
+          `;
+        })
+        .catch(() => {
+          document.getElementById("detalhesProduto").innerHTML =
+            "<p>Produto não encontrado.</p>";
+        });
+    }
+
+    function aplicarFiltro(categoria) {
+      if (termo.trim()) {
+        window.location.href = `pesquisa.html?q=${encodeURIComponent(categoria)}`;
+      }
+    }
+
+    function sugerirTermos(valor) {
+      const sugestoes = [ "cadeira", "mesa", "armário, gaveteiros"];
+      const lista = document.getElementById("sugestoes");
+      lista.innerHTML = "";
+
+      if (valor.trim().length > 0) {
+        sugestoes
+          .filter((item) => item.toLowerCase().startsWith(valor.toLowerCase()))
+          .forEach((sugestao) => {
+            const li = document.createElement("li");
+            li.textContent = sugestao;
+            li.onclick = () => {
+              document.getElementById("barraBusca").value = sugestao;
+              aplicarFiltro(sugestao);
+            };
+            lista.appendChild(li);
+          });
+      }
+    }
+  </script>
+</body>
+</html>
