@@ -196,7 +196,7 @@
     // Carregamento de produtos
     async function carregarProdutos() {
       try {
-        const resposta = await fetch("http://localhost:3000/api/produtos");
+        const resposta = await fetch("https://guarani-backend-1.onrender.com/api/produtos");
         const produtos = await resposta.json();
 
         const categorias = {};
