@@ -5,19 +5,19 @@ const produtos = [
     nome: "Cadeira de Madeira",
     descricao: "Cadeira confortável feita em madeira maciça.",
     categoria: "Cadeiras",
-    imagem: "/uploads/cadeira.jpg"
+    imagem: "/imagens/cadeira.jpg"
   },
   {
     nome: "Mesa de Jantar",
     descricao: "Mesa grande para até 6 pessoas, acabamento premium.",
     categoria: "Mesas",
-    imagem: "/uploads/mesa.jpg"
+    imagem: "/imagens/mesa.jpg"
   },
   {
     nome: "Armário de Cozinha",
     descricao: "''",
     categoria: "Armários",
-    imagem: "/uploads/armario.jpg"
+    imagem: "/imagens/armario.jpg"
   },
 ];
 
