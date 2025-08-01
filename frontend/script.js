@@ -1,4 +1,3 @@
-// Função para carregar os produtos do backend (com busca opcional)
 async function carregarProdutos() {
   try {
     const termoBusca = document.getElementById("campoBusca")?.value || "";
@@ -12,9 +11,8 @@ async function carregarProdutos() {
       const card = document.createElement("div");
 
       card.innerHTML = `
-        <img src="${produto.imagem || 'imagens/placeholder.jpg'}" alt="${produto.nome}">
+        <img src="imagens/${produto.imagem}" alt="${produto.nome}" style="width: 100%; height: auto;">
         <h3>${produto.nome}</h3>
-        <p>R$ ${produto.preco.toFixed(2)}</p>
         <a href="detalhes.html?id=${produto.id}">Ver detalhes</a>
       `;
 
