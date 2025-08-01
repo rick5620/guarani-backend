@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://guaranimoveis.netlify.app/sitemap.xml
