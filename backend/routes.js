@@ -6,13 +6,17 @@ const path = require("path");
 
 // Configuração do Multer para upload de imagens
 const storage = multer.diskStorage({
-  destination: "backend/uploads/",
-  filename: (req, file, cb) => {
-    const nomeArquivo = `${Date.now()}-${file.originalname}`;
-    cb(null, nomeArquivo);
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "../frontend/imagens"));
   },
+  filename: function(req, file, cb)
+  {
+    const uniqueName = Date.now() + "-" + file.originalname;
+    cb(null, uniqueName);
+  }
 });
-const upload = multer({ storage });
+
+const upload = multer({ storage: storage });
 
 // Buscar produtos com filtro
 router.get("/produtos", (req, res) => {
@@ -53,11 +57,11 @@ router.post("/produtos", (req, res) => {
 });
 
 // Upload de imagem
-router.post("/upload", upload.single("imagem"), (req, res) => {
+router.post("/imagens", upload.single("imagem"), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "Nenhum arquivo enviado." });
   }
-  const caminho = `/uploads/${req.file.filename}`;
+  const caminho = `/imagens/${req.file.filename}`;
   res.json({ caminho });
 });
 

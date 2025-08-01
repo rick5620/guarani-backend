@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Pasta pública para uploads de imagens
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/imagens", express.static(path.join(__dirname, "../frontend/imagens")));
 
 // Servir o frontend
 app.use(express.static(path.join(__dirname, "../frontend")));
@@ -25,5 +25,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
