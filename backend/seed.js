@@ -5,19 +5,19 @@ const produtos = [
     nome: "Cadeira de Madeira",
     descricao: "Cadeira confortável feita em madeira maciça.",
     categoria: "Cadeiras",
-    imagem: "https://guarani-backend-1.onrender.com/imagens/cadeira.jpg"
+    imagem: "cadeira.jpg"
   },
   {
     nome: "Mesa de Jantar",
     descricao: "Mesa grande para até 6 pessoas, acabamento premium.",
     categoria: "Mesas",
-    imagem: "https://guarani-backend-1.onrender.com/imagens/mesa.jpg"
+    imagem: "mesa.jpg"
   },
   {
     nome: "Armário de Cozinha",
     descricao: "''",
     categoria: "Armários",
-    imagem: "https://guarani-backend-1.onrender.com/imagens/armario.jpg"
+    imagem: "armario.jpg"
   },
 ];
 

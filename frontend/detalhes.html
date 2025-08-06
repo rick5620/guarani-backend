@@ -75,7 +75,7 @@
         .then((produto) => {
           const container = document.getElementById("detalhesProduto");
           container.innerHTML = `
-            <img src="https://guarani-backend-1.onrender.com/api/produtos/imagens/${produto.imagem}" alt="${produto.nome}" />
+            <img src="imagens/${produto.imagem}" alt="${produto.nome}" />
             <h2>${produto.nome}</h2>
             <p>${produto.descricao}</p>
           `;

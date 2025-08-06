@@ -11,7 +11,7 @@ async function carregarProdutos() {
       const card = document.createElement("div");
 
       card.innerHTML = `
-        <img src="/imagens${produto.imagem}" alt="${produto.nome}" style="width: 100%; height: auto;">
+        <img src="${produto.imagem}" alt="${produto.nome}" style="width: 100%; height: auto;">
         <h3>${produto.nome}</h3>
         <a href="detalhes.html?id=${produto.id}">Ver detalhes</a>
       `;
