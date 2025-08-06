@@ -6,7 +6,7 @@ const path = require("path");
 
 // Configuração do Multer para upload de imagens
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: function (req, file, cb) {;
     cb(null, path.join(__dirname, "../frontend/imagens"));
   },
   filename: function(req, file, cb)
@@ -20,7 +20,7 @@ const upload = multer({ storage: storage });
 
 // Buscar produtos com filtro
 router.get("/produtos", (req, res) => {
-  const busca = req.query.busca;
+  const {busca} = req.query;
   let query = "SELECT * FROM produtos";
   const params = [];
 
@@ -37,10 +37,23 @@ router.get("/produtos", (req, res) => {
   });
 });
 
+router.get("/produtos/:id", (req,res) => {
+  const {id} = req.params;
+  db.get("SELECT * FROM produtos WHERE id = ?", [id], (err, row) => {
+    if(err) {
+      return res.status(500).json({error:"Erro ao buscar produto por ID."});
+    }
+    if(!row) {
+      return res.status(404).json({error:"Produto não encontrado."});
+  }
+  res.json(row);
+});
+});
+
 // Adicionar produto
 router.post("/produtos", (req, res) => {
   const { nome, descricao, categoria, imagem } = req.body;
-  if (!nome || !preco) {
+  if (!nome) {
     return res.status(400).json({ error: "Nome é obrigatório." });
   }
 
